@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page</title>
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body> 
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+          <div class="welcome-message">
+            <span id="username"><%=users[0].name%></span>
+            <br>
+            <span id="username"><%= users[0].role %></span>
+          </div>
+          <button id="logout-btn">Logout</button>
+        </div>
+    </header>
+
+  <main>
+    <section id="message-list">
+      <h2>Messages</h2>
+      <ul id="message-items">
+        <!-- Message items will be dynamically generated here -->
+      </ul>
+    </section>
+  </main>
+
+  <div id="form-popup">
+    <div id="form-container">
+      <h2>Create a New Message</h2>
+      <form id="message-form" action="/create-message" method="POST">
+        <label for="order-id">Order ID:</label>
+        <input type="text" id="order-id" name="orderID" readonly>
+
+        <label for="to">To:</label>
+        <input type="text" id="to" name="to" required>
+
+        <label for="from">From:</label>
+        <input type="text" id="from" name="from" required>
+
+        <label for="quantity">Quantity:</label>
+        <select id="quantity" name="quantity">
+          <option value="1">1 ton</option>
+          <option value="2">2 tons</option>
+          <option value="3">3 tons</option>
+        </select>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" readonly>
+
+        <label for="transporter">Transporter:</label>
+        <select id="transporter" name="transporter">
+          <option value="Transporter 1">Transporter 1</option>
+          <option value="Transporter 2">Transporter 2</option>
+        </select>
+
+        <button type="submit">Send Message</button>
+      </form>
+
+      <button id="close-btn">Close</button>
+    </div>
+  </div>
+
+  <button id="open-form-btn">Create New Message</button>
+
+  <script src="script1.js"></script>
+</body>
+</html>

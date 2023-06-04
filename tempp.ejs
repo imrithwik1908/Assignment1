@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en"> 
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website with Login & Registration Form</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Unicons --> 
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav">
+        <a href="#" class="nav_logo">Welcome, <%= users[0].name %></a>
+
+        <ul class="nav_items"> 
+          <li class="nav_item">
+            <a href="#" class="nav_link">Home</a>
+            <a href="#" class="nav_link">Contact</a>
+            <button class="button" id="form-open">Messages</button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Home -->
+    <section class="home">
+      <div class="form_container">
+        <i class="uil uil-times form_close"></i>
+        <!-- Login From -->
+        <div class="form login_form">
+            <form action="/message" method="post">
+              <h2>Create Message</h2>
+  
+              <div class="input_box">
+                <input type="text" id="order-id" name="orderID" placeholder="Order ID:" value="<%= code %>" readonly>
+                <i class="uil uil-parcel email"></i>
+              </div>
+  
+              <div class="input_box">
+                <input type="text" id="to" name="to" placeholder="To:" required>
+                <i class="uil uil-top-arrow-from-top email"></i>
+              </div>
+  
+              <div class="input_box">
+                <input type="text" id="from" name="from" placeholder="From:" required>
+                <i class="uil uil-arrow-from-top email"></i>
+              </div>
+  
+              <div class="input_box">
+                    <label for="quantity">Quantity:</label>
+                    <select id="quantity" name="quantity">
+                    <option value="1">1 ton</option>
+                    <option value="2">2 tons</option>
+                    <option value="3">3 tons</option>
+                    </select>
+              </div>
+  
+              <div class="input_box">
+                    <input type="text" id="address" name="address" placeholder="Address:" readonly>
+                    <i class="uil uil-map-marker-shield email"></i>
+              </div>
+  
+              <div class="input_box">
+                    <label for="transporter">Transporter:</label>
+                    <select id="transporter" name="transporter">
+                    <option value="Select">Select</option>
+                    <% 
+                        if(trps.length > 0){
+                            for(let i=0; i < trps.length; i++){
+                                %>
+                                <option value="<%= trps[i]['name'] %>"><%= trps[i]['name'] %></option>
+                                <%
+                            }
+                        }
+                    %>
+                    </select>
+              </div>
+  
+              <button class="button">Send</button>
+            </form>
+        </div>
+
+        <!-- Signup From -->
+        <div class="form signup_form">
+          <form action="/signup" method="post">
+            <h2>Signup</h2>
+
+            <div class="input_box">
+              <input type="text" placeholder="Enter your name" name="name"  required />
+              <i class="uil uil-user email"></i>            
+            </div>
+
+            <div class="input_box">
+              <input type="email" placeholder="Enter your email" name="newEmail" required />
+              <i class="uil uil-envelope-alt email"></i>
+            </div>
+            <div class="input_box">
+              <input type="password" placeholder="Create password" name="crtPassword" required />
+              <i class="uil uil-lock password"></i>
+              <i class="uil uil-eye-slash pw_hide"></i>
+            </div>
+            <div class="input_box">
+              <input type="password" placeholder="Confirm password" name="passwordConfirm" required />
+              <i class="uil uil-lock password"></i>
+              <i class="uil uil-eye-slash pw_hide"></i>
+            </div> 
+
+            <div class="input_box">
+              <label for="role-name">Choose a Role: </label> 
+              <select name="Role" id="role-names"> 
+                  <option value="Manufacturer">Manufacturer</option> 
+                  <option value="Transporter">Transporter</option> 
+              </select>          
+            </div>
+
+            <div class="input_box">
+                <input type="text" placeholder="Enter your address" name="address"  required />
+                <i class="uil uil-at email"></i>              
+            </div>
+
+            <button class="button">Signup Now</button>
+
+            <div class="login_signup">Already have an account? <a href="#" id="login">Login</a></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en"> 
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manufacturer Home</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Unicons --> 
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav">
+        <a href="#" class="nav_logo">Welcome, <%= users[0].name %></a>
+
+        <h4 class="nav_logo">Manufacturer Site</h4>
+
+        <ul class="nav_items"> 
+          <li class="nav_item">
+            <a href="/" class="nav_link">Home</a>
+            <button class="button" id="form-open">Messages</button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Home -->
+    <section class="home">
+      <div class="form_container">
+        <i class="uil uil-times form_close"></i>
+        <!-- Login From -->
+        <div class="form login_form">
+            <form action="/message" method="post">
+              <h2>Create Message</h2>
+  
+              <div class="input_box">
+                <input type="text" id="order-id" name="orderID" placeholder="Order ID:" value="<%= code %>" readonly>
+                <i class="uil uil-parcel email"></i>
+              </div>
+  
+              <div class="input_box">
+                <input type="text" id="to" name="to" placeholder="To:" required>
+                <i class="uil uil-top-arrow-from-top email"></i>
+              </div>
+  
+              <div class="input_box">
+                <input type="text" id="from" name="from" placeholder="From:" required>
+                <i class="uil uil-arrow-from-top email"></i>
+              </div>
+  
+              <div class="input_box">
+                    <label for="quantity">Quantity:</label>
+                    <select id="quantity" name="quantity">
+                    <option value="1">1 ton</option>
+                    <option value="2">2 tons</option>
+                    <option value="3">3 tons</option>
+                    </select>
+              </div>
+  
+              <div class="input_box">
+                    <input type="text" id="address" name="address" placeholder="Address:" value="<%= users[0].address %>" readonly>
+                    <i class="uil uil-map-marker-shield email"></i>
+              </div>
+  
+              <div class="input_box">
+                    <label for="transporter">Transporter:</label>
+                    <select id="transporter" name="transporter">
+                        <option value="Select">
+                          Select
+                        </option>
+                            <% 
+                                if(trps.length > 0){
+                                    for(let i=0; i < trps.length; i++){
+                                        %>
+                                        <option value="<%= trps[i]['name'] %>"><%= trps[i]['name'] %></option>
+                                        <%
+                                    }
+                                }
+                            %>
+                      </select>
+              </div>
+  
+              <button class="button">Send</button>
+
+              <div class="login_signup">Recieved Messages <a href="#" id="signup">Click Here</a></div>
+            </form>
+        </div>
+
+        <!-- Signup From -->
+        <div class="form signup_form">
+          <form action="/signup" method="post">
+            <h2>Messages</h2>
+
+            <div class="input_box">
+              <input type="text" id="search-input" placeholder="Search by Order ID">
+              <i class="uil uil-search email"></i>
+            </div>
+
+            <br>
+
+            <div id="message-list" >
+                <% 
+                  if(receivedMessages.length > 0){
+                      for(let i=0; i < receivedMessages.length; i++){
+                          %>
+                              <h5>Order ID : <%= receivedMessages[i]['orderID'] %></h5>
+                          <%
+                      }
+                  }
+                %>
+            </div>
+
+            <br>
+            
+            <!-- <div id="message-details">
+              <h2>Order Details</h2>
+              <p id="Order-id"></p>
+              <p id="To"></p>
+              <p id="From"></p>
+              <p id="Address"></p>
+              <p id="content"></p>
+            </div> -->
+
+            <h2>Recieved Messages : </h2>
+
+            <div id="message-list message" >
+              <% 
+                if(orders.length > 0){
+                    for(let i=0; i < orders.length; i++){
+                        %>
+                            <h4>Order ID : <%= orders[i]['orderID'] %></h4>
+                            <h5>Price: <%= orders[i]['price'] %></h5>
+
+                        <%
+                    }
+                }
+              %>
+          </div>
+
+            <button class="button">Signup Now</button>
+
+            <div class="login_signup"> Create New Message <a href="#" id="login"> Click Here </a></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
